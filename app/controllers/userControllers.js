@@ -33,7 +33,7 @@ exports.updateProfile = function(req, res, next){
         password: updateUser.encryptPassword(req.body.password)
     }
 
-    //console.log('update user: ', data);
+    
     User.findByIdAndUpdate({_id: req.params.id}, data).then(function(){
             User.findById({_id: req.params.id }).then(function(err, user){
                 if( err )
@@ -61,7 +61,7 @@ exports.createUser =  function(req, res, next){
             username: req.body.username,
             password: req.body.password
         });
-        //console.log('new user', newUser);
+        
         newUser.save(function(err, user){
             console.log('save user..');
             if(err)
@@ -93,9 +93,8 @@ exports.loginUser = function(req, res, next){
 
 
 exports.userInfo = function(req, res, next){
-    //console.log('req headers', req.headers);
+    
     let token = getToken(req.headers);
-    //console.log('token', token);
 
     if(token){
         let decoded = jwt.decode(token, config.secret);
@@ -115,17 +114,16 @@ exports.userInfo = function(req, res, next){
 };
 
 let getToken =  function(headers){
-    //console.log('get headers', headers);
+    
     if(headers.authorization){
         let parted = headers.authorization.split(' ');
-        //console.log('get Token ',parted);
+        
         if(parted.length == 2){
             return parted[1];
         }else{
             return null;
         }
     }else{
-        //console.log('call else token');
         return null;
     }
 };

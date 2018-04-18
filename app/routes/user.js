@@ -13,9 +13,6 @@ var User = require('../models/user');
 var router = express.Router();
 
 router.use(function(req, res, next){
-    console.log('Method: ', req.method);
-    console.log('Url: ', req.url);
-    //console.log('req headers', req.headers);
     next();
 });
 
@@ -47,7 +44,6 @@ function isLoggedIn(req, res, next){
         return next();
     }
     res.send("please login.")
-    //res.redirect('');
 }
 
 function notLoggedIn(req, res, next){

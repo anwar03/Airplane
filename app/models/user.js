@@ -40,22 +40,7 @@ userSchema.pre('save', function(next){
 userSchema.methods.encryptPassword = function( password ){
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
 };
-/*
-userSchema.methods.encryptPassword = function(password, next){
-    console.log('encryptPassword start');
-    bcrypt.genSaltSync(10, function(err, salt){
-        console.log('genSalt start', salt);
-        if(err)
-            return next(err);
-        bcrypt.hashSync(password, salt, function(err, hash){
-            console.log('Hash start', hash);
-            if(err)
-                return next(err);
-            return hash;
-        });
-    });
-};
-*/
+
 userSchema.methods.validPassword = function(password, cb){
     return bcrypt.compare(password, this.password, function(err, isMatch){
         if (err) return cb(err);
