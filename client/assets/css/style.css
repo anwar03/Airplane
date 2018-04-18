@@ -1,0 +1,22 @@
+.container{
+	width: 99% !important;
+}
+
+.glyphicon{
+	margin-right: 5px;
+}
+
+.active > a{
+	font-weight: 600;
+	background-color: #eeeeee !important;
+	color: #999999 !important;
+}
+
+.radius-zero{
+	border-radius: 0 !important;
+}
+
+.table-heading{
+	background-color: #dddddd !important;
+	border-radius: 0 !important;
+}

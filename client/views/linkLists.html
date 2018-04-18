@@ -1,0 +1,27 @@
+<div ng-init="getLinks()" class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="table-heading panel-heading "><span class="glyphicon-class glyphicon glyphicon-plane"></span>Delivery Links</div>
+
+  <!-- Table -->
+  <table class="table table-striped table-hover">
+      <tr>
+          <th>Link Title</th>
+          <th>Short Link</th>
+          <th>Destination</th>
+          <th>Created</th>
+          <th>Redirects</th>
+          <th ng-show="isAdmin" class="text-center">Action</th>
+      </tr>
+      <tr ng-repeat="link in Links">
+          <td>{{ link.title }}</td>
+          <td><a ng-click="hitCount(link._id)" target="_blank" href="{{ link.destination }}"> {{ link.shortLink }}</td>
+          <td>{{ link.destination }}</td>
+          <td>{{ link.createDate | date: 'MMMM d, y mm:hh:ss a' }}</td>
+          <td class="text-center">{{ link.redirect }}</td>
+          <td ng-show="isAdmin" class="text-center">
+              <a class="btn btn-default" href="#!/admin/updatelink/{{ link._id }}">Edit</a>
+              <a class="btn btn-danger" ng-click="deleteLink(link._id);">delete</a>
+          </td>
+      </tr>
+  </table>
+</div>
